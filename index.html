@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Bíblico 📖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="quiz-conteiner">
+
+<span id="numero-p"></span>
+
+<h2>QUIZ 📖</h2>
+
+<p id="pergunta"></p>
+
+<div class="respostas" id="respostas">
+
+    <button id="a" onclick="selecionarResposta('a')">
+        <span id="a-text"></span>
+    </button>
+
+    <button id="b" onclick="selecionarResposta('b')">
+        <span id="b-text"></span>
+    </button>
+
+    <button id="c" onclick="selecionarResposta('c')">
+        <span id="c-text"></span>
+    </button>
+
+    <button id="d" onclick="selecionarResposta('d')">
+        <span id="d-text"></span>
+    </button>
+
+</div>
+
+<button onclick="voltar()" id="voltar">
+    Voltar ao quiz
+</button>
+
+<p id="texto"></p>
+
+</div>
+
+<footer>
+    &copy; Desenvolvido por Alison Rodrigues Carvalho Marques
+</footer>
+
+<script>
+
+    const lista = [
+        ["Qual o nome do pai de Davi?", "Jesse", "Saul", "Jônatas", "Eliabe"],
+        ["Quem construiu a arca?", "Noé", "Abraão", "Moisés", "Davi"],
+        ["Qual era o nome da esposa de Abraão?", "Sara", "Rebeca", "Raquel", "Lea"],
+        ["Quantos discípulos Jesus tinha?", "12", "10", "7", "3"],
+        ["Quem foi lançado na cova dos leões?", "Daniel", "Jonas", "Elias", "Isaías"],
+        ["Quem traiu Jesus?", "Judas", "Pedro", "Tomé", "João"],
+        ["Quem abriu o Mar Vermelho?", "Moisés", "Josué", "Elias", "Davi"],
+        ["Qual apóstolo negou Jesus três vezes?", "Pedro", "Paulo", "Tiago", "André"],
+        ["Onde Jesus nasceu?", "Belém", "Jerusalém", "Nazaré", "Canaã"],
+        ["Quem foi o homem mais forte da Bíblia?", "Sansão", "Golias", "Davi", "Elias"]
+    ];
+
+    let indice = 0;
+
+    const numeroP = document.getElementById("numero-p");
+    const pergunta = document.getElementById("pergunta");
+    const botaoVoltar = document.getElementById("voltar");
+    const texto = document.getElementById("texto");
+    const respostas = document.getElementById("respostas");
+
+    const botoes = {
+        a: document.getElementById("a"),
+        b: document.getElementById("b"),
+        c: document.getElementById("c"),
+        d: document.getElementById("d")
+    };
+
+    botaoVoltar.style.display = "none";
+
+    mostrarPergunta();
+
+    function mostrarPergunta() {
+
+        numeroP.innerText =
+            (indice + 1) + "/" + lista.length;
+
+        pergunta.innerText =
+            lista[indice][0];
+
+        document.getElementById("a-text").innerText =
+            lista[indice][1];
+
+        document.getElementById("b-text").innerText =
+            lista[indice][2];
+
+        document.getElementById("c-text").innerText =
+            lista[indice][3];
+
+        document.getElementById("d-text").innerText =
+            lista[indice][4];
+
+        texto.innerText = "";
+
+        botoes.a.disabled = false;
+        botoes.b.disabled = false;
+        botoes.c.disabled = false;
+        botoes.d.disabled = false;
+
+        botoes.a.classList.remove("selecionada");
+        botoes.b.classList.remove("selecionada");
+        botoes.c.classList.remove("selecionada");
+        botoes.d.classList.remove("selecionada");
+    }
+function selecionarResposta(letra) {
+
+    const posicao = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 4
+    };
+
+    const respostaUsuario = lista[indice][posicao[letra]];
+    const respostaCorreta = lista[indice][1];
+
+    botoes.a.classList.remove("selecionada", "correta", "errada");
+    botoes.b.classList.remove("selecionada", "correta", "errada");
+    botoes.c.classList.remove("selecionada", "correta", "errada");
+    botoes.d.classList.remove("selecionada", "correta", "errada");
+
+    if (respostaUsuario === respostaCorreta) {
+
+        botoes[letra].classList.add("correta");
+
+        texto.innerText = `A resposta "${respostaUsuario}" está certa! 😁👍`;
+
+        botoes.a.disabled = true;
+        botoes.b.disabled = true;
+        botoes.c.disabled = true;
+        botoes.d.disabled = true;
+
+        indice++;
+
+        if (indice < lista.length) {
+
+            setTimeout(() => {
+                mostrarPergunta();
+            }, 1000);
+
+        } else {
+
+            setTimeout(() => {
+
+                numeroP.innerText = lista.length + "/" + lista.length;
+
+                pergunta.innerText = "✝️ Fim do quiz! 📖";
+
+                respostas.style.display = "none";
+
+                botaoVoltar.style.display = "block";
+
+                texto.innerText = "Parabéns! Você terminou o quiz! 🎉";
+
+            }, 1000);
+        }
+
+    } else {
+
+        botoes[letra].classList.add("errada");
+
+        texto.innerText = `A resposta "${respostaUsuario}" está errada ❌`;
+
+        setTimeout(() => {
+
+            botoes[letra].classList.remove("errada");
+
+            texto.innerText = "";
+
+        }, 1000);
+    }
+}
+
+
+    function voltar() {
+
+        indice = 0;
+
+        respostas.style.display = "flex";
+
+        botaoVoltar.style.display = "none";
+
+        mostrarPergunta();
+    }
+
+</script>
+
+</body>
+
+</html>

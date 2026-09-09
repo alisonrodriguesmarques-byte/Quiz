@@ -1,0 +1,154 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #3b087a, #6e00d5, #8b7cff);
+    font-family: Arial, sans-serif;
+}
+
+#quiz-conteiner {
+    width: 420px;
+    min-height: 360px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+#numero-p {
+    display: block;
+    margin-bottom: 15px;
+    color: #777;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #5e17eb;
+    font-size: 30px;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+#pergunta {
+    min-height: 50px;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+#respostas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#respostas button {
+    width: 100%;
+    padding: 13px 15px;
+    margin-top: 0;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#respostas button:hover {
+    border-color: #5e17eb;
+    background: #f7f3ff;
+    transform: translateY(-2px);
+}
+
+#respostas button.selecionada {
+    border-color: #5e17eb;
+    background: #f7f3ff;
+}
+
+#respostas button.correta {
+    border-color: #22c55e;
+    background: #dcfce7;
+    color: #15803d;
+}
+
+#respostas button.errada {
+    border-color: #ef4444;
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 10px;
+    background: #5e17eb;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4810b8;
+    transform: translateY(-2px);
+}
+
+#voltar {
+    background: #333;
+}
+
+#voltar:hover {
+    background: #111;
+}
+
+#texto {
+    min-height: 25px;
+    margin-top: 20px;
+    color: #444;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+footer {
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 11px;
+}
+
+@media (max-width: 500px) {
+    #quiz-conteiner {
+        width: 90%;
+        padding: 30px 25px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    #pergunta {
+        font-size: 17px;
+    }
+}
